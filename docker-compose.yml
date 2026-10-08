@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: agentic
+      POSTGRES_USER: agentic
+      POSTGRES_PASSWORD: agentic
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentic"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  enterprise-tools:
+    build: ./services/enterprise-tools
+    environment:
+      PORT: 8100
+    ports:
+      - "8100:8100"
+
+  api:
+    build: ./apps/api
+    environment:
+      APP_MODE: mock
+      DATABASE_URL: postgresql+asyncpg://agentic:agentic@postgres:5432/agentic
+      ENTERPRISE_TOOLS_URL: http://enterprise-tools:8100
+      AWS_REGION: us-east-1
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      enterprise-tools:
+        condition: service_started
+
+  web:
+    build: ./apps/web
+    environment:
+      VITE_API_URL: http://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
