@@ -1,0 +1,27 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #172033;
+  background: #f3f5f8;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, textarea { font: inherit; }
+.shell { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+header { margin-bottom: 28px; }
+h1 { font-size: clamp(2rem, 6vw, 4rem); margin: 4px 0; letter-spacing: -0.04em; }
+.eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; font-weight: 700; }
+.subtitle { max-width: 660px; color: #5d6574; }
+.card { background: white; border: 1px solid #dde2e9; border-radius: 16px; padding: 24px; margin: 18px 0; box-shadow: 0 10px 30px rgba(20, 30, 50, .05); }
+label { display: grid; gap: 8px; margin-bottom: 18px; font-weight: 650; }
+input, textarea { width: 100%; border: 1px solid #ccd3dd; border-radius: 10px; padding: 12px; background: #fbfcfe; }
+button { border: 0; border-radius: 10px; padding: 11px 18px; font-weight: 700; cursor: pointer; background: #172033; color: white; }
+button:disabled { opacity: .5; cursor: wait; }
+.secondary { background: #e8ecf2; color: #172033; }
+.actions { display: flex; gap: 10px; }
+.status { display: inline-block; background: #e9eef6; border-radius: 999px; padding: 6px 10px; font-size: .8rem; font-weight: 700; }
+.mono, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem; }
+pre { overflow: auto; background: #f6f8fb; padding: 14px; border-radius: 10px; }
+.answer { line-height: 1.65; white-space: pre-wrap; }
+.error { border-color: #d26d6d; }
+.approval { margin-top: 24px; border-top: 1px solid #e2e7ed; padding-top: 20px; }
